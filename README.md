@@ -15,8 +15,7 @@
 
 ```
 Warhammer3Mod/
-├── .qoder/skills/  # 指向 skills/ 的目录链接（Qoder 项目级技能发现）
-├── skills/
+├── .qoder/skills/   # Qoder 技能目录（4 个 skill 本体，随仓库提交）
 │   ├── warhammer-mod-art/SKILL.md
 │   ├── warhammer-mod-character-creation/SKILL.md
 │   ├── warhammer-mod-development/
@@ -31,10 +30,12 @@ Warhammer3Mod/
 │   ├── 战锤3原版能力强度Intensity整理.md
 │   ├── 战锤3原版领主与英雄动作整理.md
 │   └── 战锤3法术相关DB字段说明.md
-├── 源码/           # 游戏原版脚本、UI、DB文件（RPFM 解包数据，供参考）
-├── 多语言/         # 原版本地化（local_cn 简体 / local_zh 繁体 / local_en 英文）+ 术语库.md
+├── 源码/           # 游戏原版脚本、UI、DB文件（RPFM 解包数据，本地参考，不提交）
+├── 多语言/         # 原版本地化（local_cn 简体 / local_zh 繁体 / local_en 英文）+ 术语库.md（不提交）
 └── selfMods/       # 所有MOD文件夹（文档中简称 mod/）
 ```
+
+> 技能包本体位于 `.qoder/skills/`（Qoder 项目级技能发现目录，真实目录，随仓库提交）；`docs/` 位于仓库根，两者相对结构固定，clone 后即可在 Qoder 中直接使用。
 
 ## 安装方法
 
@@ -42,22 +43,19 @@ Warhammer3Mod/
 
 ### 方式一：Qoder（本机已安装）
 
-本仓库的 `skills/` 已通过**目录链接（Junction）**安装到 Qoder 的两个技能发现位置，无需复制，改动仓库即全局生效：
+技能包本体位于仓库 `.qoder/skills/`（Qoder 项目级技能发现目录），clone 后在 Qoder 中打开本仓库即可自动发现；同时用户级 `~/.qoder/skills/` 通过**目录链接（Junction）**指向仓库 `.qoder/skills/` 下的同名 skill，无需复制，改动仓库即全局生效：
 
 | 位置 | 说明 |
 |------|------|
-| `~/.qoder/skills/`（用户级） | 4 个 skill 子目录分别链接到仓库 `skills/` 下同名目录 |
-| `<仓库根>/.qoder/skills/`（项目级） | 链接到仓库 `skills/`，随项目打开自动发现 |
+| `<仓库根>/.qoder/skills/`（项目级） | 4 个 skill 本体（真实目录，随仓库提交），Qoder 打开本仓库自动发现 |
+| `~/.qoder/skills/`（用户级） | 4 个 Junction 分别链接到仓库 `.qoder/skills/` 下同名目录 |
 
-重新创建链接的命令（PowerShell）：
+重新创建用户级链接的命令（PowerShell）：
 
 ```powershell
-# 用户级
-New-Item -ItemType Junction -Path "$env:USERPROFILE\.qoder\skills\warhammer-mod-development" -Target "D:\GitHubProject\Warhammer3Mod\skills\warhammer-mod-development"
+$src = "D:\GitHubProject\Warhammer3Mod\.qoder\skills"
+New-Item -ItemType Junction -Path "$env:USERPROFILE\.qoder\skills\warhammer-mod-development" -Target "$src\warhammer-mod-development"
 # ... 其余 3 个 skill 同理
-
-# 项目级
-New-Item -ItemType Junction -Path "D:\GitHubProject\Warhammer3Mod\.qoder\skills" -Target "D:\GitHubProject\Warhammer3Mod\skills"
 ```
 
 ### 方式二：其他客户端（整体放置，链接完整）
@@ -91,4 +89,4 @@ New-Item -ItemType Junction -Path "D:\GitHubProject\Warhammer3Mod\.qoder\skills"
 
 ## 更新同步
 
-本仓库 `skills/` 与 Qoder 技能目录（`~/.qoder/skills/`、工作区 `.qoder/skills/`）通过目录链接保持同步——**只改仓库一处，Qoder 即自动生效**。如发现内容过时或有误，欢迎提 issue。
+本仓库 `.qoder/skills/` 与 Qoder 用户级技能目录（`~/.qoder/skills/`）通过目录链接保持同步——**只改仓库一处，Qoder 即自动生效**。如发现内容过时或有误，欢迎提 issue。

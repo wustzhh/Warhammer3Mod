@@ -7,15 +7,14 @@ description: "提供全面战争：战锤3 MOD开发指导，包括TSV表格格�
 
 ## 工作区结构
 
-当前工作区根目录：`d:\GitHubProject\Warhammer3Mod`（本技能包已安装到 Qoder：`~/.qoder/skills/`（用户级）与工作区 `.qoder/skills/`（项目级）均为指向本仓库 `skills/` 的目录链接，改动仓库即全局生效；所有相对路径均相对工作区根）
+当前工作区根目录：`d:\GitHubProject\Warhammer3Mod`（本技能包本体位于 `.qoder/skills/`，Qoder 打开本仓库自动发现；用户级 `~/.qoder/skills/` 通过目录链接指向本仓库 `.qoder/skills/`，改动仓库即全局生效；所有相对路径均相对工作区根）
 
 ```
 Warhammer3Mod/
-├── .qoder/skills/  # 指向 skills/ 的目录链接（Qoder 项目级技能发现）
-├── skills/         # 本仓库 4 个技能包（用户级 ~/.qoder/skills/ 也指向这里）
+├── .qoder/skills/  # 本仓库 4 个技能包本体（随仓库提交，Qoder 项目级技能目录）
 ├── docs/           # 7 份专题文档（development skill 引用）
-├── 源码/           # 游戏原版脚本、UI、DB文件（RPFM 解包数据，供参考）
-├── 多语言/         # 原版本地化（local_cn 简体 / local_zh 繁体 / local_en 英文）+ 术语库.md
+├── 源码/           # 游戏原版脚本、UI、DB文件（RPFM 解包数据，本地参考，不提交）
+├── 多语言/         # 原版本地化（local_cn 简体 / local_zh 繁体 / local_en 英文）+ 术语库.md（不提交）
 └── selfMods/       # 所有MOD文件夹（文档中简称 mod/）
     └── [MOD名]/
         ├── script/campaign/mod/    # Lua脚本
